@@ -15,6 +15,16 @@ Fetch and convert web pages to clean Markdown. Supports single-page fetch and mu
 
 Failover triggers: HTTP 403/429, empty response, bot-detection pages, timeout, or any non-200 error from the current provider. When falling back, briefly note which provider failed and why.
 
+### Jina Reader Authentication (optional)
+
+Jina Reader works without authentication but has stricter rate limits. To increase quota, pass a bearer token via the `Authorization` header:
+
+```
+Authorization: Bearer jina_<your_token>
+```
+
+Get a free API key at https://jina.ai/reader/.
+
 ## Input
 
 The user provides URLs and options, optionally followed by a prompt or question.
