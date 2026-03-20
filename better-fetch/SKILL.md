@@ -1,11 +1,19 @@
 ---
-name: markdown-fetch
-description: Fetch and convert web pages to clean Markdown using markdown.new. Supports single-page fetch and multi-page site crawl.
+name: better-fetch
+description: Fetch and convert web pages to clean Markdown with automatic failover. Primary: markdown.new, fallback: Jina Reader. Supports single-page fetch and multi-page site crawl.
 ---
 
-# Web Fetch via markdown.new
+# BetterFetch
 
-Use markdown.new to fetch and convert web pages to clean Markdown. Supports single-page fetch and multi-page crawl.
+Fetch and convert web pages to clean Markdown. Supports single-page fetch and multi-page crawl, with automatic failover between providers.
+
+## Provider Chain
+
+1. **Primary — markdown.new**: `https://markdown.new/{URL}`
+2. **Fallback — Jina Reader**: `https://r.jina.ai/{URL}`
+3. **Last resort**: Fetch the original URL directly.
+
+Failover triggers: HTTP 403/429, empty response, bot-detection pages, timeout, or any non-200 error from the current provider. When falling back, briefly note which provider failed and why.
 
 ## Input
 
@@ -19,11 +27,15 @@ The user provides URLs and options, optionally followed by a prompt or question.
 ## Single-Page Instructions
 
 1. Parse the input: extract URL(s) and any user prompt.
-2. For each URL, fetch `https://markdown.new/{URL}` with the instruction "Return the full markdown content as-is. Do not summarize."
+2. For each URL, try the provider chain in order:
+   - **markdown.new**: Fetch `https://markdown.new/{URL}` with the instruction "Return the full markdown content as-is. Do not summarize."
+   - **Jina Reader** (on failure): Fetch `https://r.jina.ai/{URL}` with the same instruction. Jina Reader returns Markdown directly.
+   - **Direct fetch** (on failure): Fetch the original URL and note the fallback.
 3. If the user provided a prompt/question, process the returned markdown to answer it. Otherwise, present the full markdown content.
-4. If markdown.new fails, fall back to fetching the original URL directly and note the fallback.
 
 ## Crawl Instructions
+
+Crawl is only available via markdown.new. If the crawl API itself is blocked, inform the user and suggest single-page mode with Jina Reader as an alternative.
 
 1. Parse the input: extract the target URL and any crawl options.
 2. **Start crawl** by sending a POST request:

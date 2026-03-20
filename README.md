@@ -12,4 +12,4 @@ npx skills add Freezind/skills
 
 | Skill | Description |
 |-------|-------------|
-| `markdown-fetch` | Fetch and convert web pages to clean Markdown via markdown.new. Supports single-page fetch and multi-page site crawl. |
+| `better-fetch` | Fetch and convert web pages to clean Markdown with automatic failover (markdown.new → Jina Reader). Supports single-page fetch and multi-page site crawl. |
