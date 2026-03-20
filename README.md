@@ -1,6 +1,6 @@
 # Skills
 
-A collection of AI agent skills for Claude Code, Cursor, Copilot, Gemini CLI, and other AI coding assistants.
+A collection of AI agent skills for Claude Code, Cursor, Copilot, Gemini CLI, and other AI coding assistants. Any contribution will be more than welcome.
 
 ## Install
 
