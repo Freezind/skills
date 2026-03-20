@@ -37,11 +37,11 @@ The user provides URLs and options, optionally followed by a prompt or question.
 ## Single-Page Instructions
 
 1. Parse the input: extract URL(s) and any user prompt.
-2. For each URL, try the provider chain in order:
+2. **Fire all requests concurrently.** When multiple URLs are provided, launch all fetches in parallel — do not wait for one URL to finish before starting the next. Each URL independently follows the provider chain:
    - **markdown.new**: Fetch `https://markdown.new/{URL}` with the instruction "Return the full markdown content as-is. Do not summarize."
    - **Jina Reader** (on failure): Fetch `https://r.jina.ai/{URL}` with the same instruction. Jina Reader returns Markdown directly.
    - **Direct fetch** (on failure): Fetch the original URL and note the fallback.
-3. If the user provided a prompt/question, process the returned markdown to answer it. Otherwise, present the full markdown content.
+3. Collect all results. If the user provided a prompt/question, process the combined markdown to answer it. Otherwise, present each page's content in order.
 
 ## Crawl Instructions
 
