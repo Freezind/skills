@@ -1,6 +1,6 @@
 ---
 name: better-fetch
-description: Fetch and convert web pages to clean Markdown with automatic failover. Primary: markdown.new, fallback: Jina Reader. Supports single-page fetch and multi-page site crawl.
+description: "Fetch and convert web pages to clean Markdown with automatic failover (markdown.new → Jina Reader). Supports single-page fetch and multi-page site crawl."
 ---
 
 # BetterFetch
