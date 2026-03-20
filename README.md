@@ -13,3 +13,11 @@ npx skills add Freezind/skills
 | Skill | Description |
 |-------|-------------|
 | `better-fetch` | Fetch and convert web pages to clean Markdown with automatic failover (markdown.new → Jina Reader). Supports single-page fetch and multi-page site crawl. |
+
+## Disclaimer
+
+This is a community project and is **not** affiliated with, endorsed by, or officially associated with Cloudflare (markdown.new) or Jina AI (Jina Reader). All trademarks belong to their respective owners.
+
+## License
+
+[MIT](LICENSE)
